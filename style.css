@@ -2,29 +2,26 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    height: 50px;  /* 100% para ocupar toda la página */
+    height: 50px; 
     display: flex;
     justify-content: center;
-    align-items: flex-start;  /* Alinea desde la parte superior */
+    align-items: flex-start; 
     background-image: url('imagenes/fondo.jpg'); 
     background-size: cover;
     background-position: center;
-    overflow-x: hidden;  /* Evita desbordamiento horizontal */
-   /* transform: scale(0.90); /* Esto reduce todo al 80% de su tamaño original */
-    /*transform-origin:center; /* Hace que la escala se aplique desde la esquina superior izquierda */
-   
+    overflow-x: hidden;  
 }
 
 .header {
     position: absolute;
     top: 5px; 
     left: 5px; 
-    font-size: 12px;  /* Reducido */
+    font-size: 12px;  
     color: #f0f6f8; 
 }
 
 .logo {
-    width: 50px;  /* Ajustado */
+    width: 50px;  
     height: auto; 
 }
 
@@ -32,22 +29,32 @@ body {
     display: flex;
     flex-direction: column; 
     align-items: center;
-    justify-content: center; /* Para que se quede al principio */
+    justify-content: center;
     background-color: rgba(255, 255, 255, 0.9); 
-    padding: 10px; /* Ajustado */
+    padding: 10px; 
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    width: 400px;  /* Ajusta el tamaño relativo */
-    max-width: 500px;  /* Máximo ancho */
+    width: 500px;  
+    max-width: 500px;  
     height: auto;
-    margin-top: 10px;  /* Para darle un poco de espacio desde la parte superior */
-    margin-bottom: 10px;  /* Deja espacio al final */
+    margin-top: 32px;  
+    margin-bottom: 10px; 
+}
+
+#multiplexorCanvas {
+    margin-top: 90px;   
+    width: 30%;       
+    height: auto;  
+    border: 1px solid #9797d3;  
+    margin-left: 20px;
+    max-height: 400px;      
+    background-color: rgba(255, 255, 255, 0.9); 
 
 }
 
 h1 {
-    font-size: 1.4rem;  /* Reducido */
-    margin-bottom: 10px;  /* Reducido */
+    font-size: 1.6rem; 
+    margin-bottom: 10px;  
     font-weight: bold;
     text-align: center;
     background: -webkit-linear-gradient(#6dd5ed, #3498db, #2ecc71); 
@@ -68,17 +75,17 @@ label {
     color: #34495E;
     font-weight: bold;
     margin-bottom: 5px;
-    font-size: 13.5px; /* Reducido */
+    font-size: 16px; 
     text-align: center;
 }
 
 input {
     width: 10%;
-    padding: 5px;  /* Reducido */
+    padding: 5px; 
     border-radius: 6px;
     border: 1px solid #BDC3C7;
-    font-size: 14px;  /* Reducido */
-    margin-bottom: 8px;  /* Reducido */
+    font-size: 15px; 
+    margin-bottom: 8px;  
     box-sizing: border-box;
     background-color: #f4f6f7; 
     text-align: left;
@@ -86,12 +93,12 @@ input {
 
 button {
     width: 80%;
-    padding: 10px;  /* Reducido */
+    padding: 10px;  
     background-color: #3498db; 
     color: white;
     border: none;
     border-radius: 6px;
-    font-size: 15px;  /* Reducido */
+    font-size: 15px;  
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -112,9 +119,9 @@ button:hover {
     padding: 15px;  /* Reducido */
     width: 80%;  /* Ajustado */
     box-sizing: border-box;
-    margin-top: 20px;  /* Reducido */
-    max-height: 300px; /* Máxima altura para los resultados */
-    overflow-y: auto;  /* Permite el desplazamiento de los resultados */
+    margin-top: 20px;  
+    max-height: 300px; 
+    overflow-y: auto;  
 }
 
 #results h2 {
@@ -173,7 +180,6 @@ footer p {
     color: #333;
 }
 
-/* Mantener el diseño actual */
 .input-container {
     margin-bottom: 15px;
     width: 100%;
@@ -182,17 +188,17 @@ footer p {
 
 .input-container label{
     margin-right: 20px; 
+    margin-top: 4px;
 }
 
 .input-container input[type="number"] {
-    display: inline-block; /* Permite aplicar margin auto */
-    margin: 0 auto; /* Centra el input */
+    display: inline-block; 
+    margin: 0 auto; 
     padding: 10px;
-    font-size: 14px;  /* Reducido */
-    width: 80%; /* Ajusta el tamaño del input */
+    font-size: 14px;  
+    width: 80%; 
 }
 
-/* Contenedor de los botones radio */
 .radio-container {
     display: flex;
     justify-content: space-evenly;
@@ -201,13 +207,11 @@ footer p {
     margin-bottom: 20px;
 }
 
-/* Estilo de los botones radio */
 .radio-container label {
     margin-right: 10px;
-    font-size: 12px;  /* Reducido */
+    font-size: 14.5px;  /* Reducido */
 }
 
-/* Espaciado para los radios */
 .radio-container input[type="radio"] {
     margin-right: 5px;
 }
@@ -215,7 +219,7 @@ footer p {
 .radio-group {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 20px;
     width: 100%;
 }
@@ -227,6 +231,7 @@ footer p {
 
 .radio-group input[type="radio"] {
     margin-right: 5px;
+
 }
 
 #transmission-unit {
