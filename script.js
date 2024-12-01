@@ -1,24 +1,31 @@
-document.getElementById("tdmForm").addEventListener("submit", function(event) {
-    event.preventDefault(); 
+document.getElementById("calculate-btn").addEventListener("click", function () {
+  const channels = parseInt(document.getElementById("channels").value);
+  const channelData = parseInt(document.getElementById("channel-data").value);
+  const channelUnit = document.querySelector('input[name="channel-unit"]:checked').value;
+  const transmissionRate = parseFloat(document.getElementById("transmission-rate").value);
+  const transmissionUnit = document.getElementById("transmission-unit").value;
+  const syncBits = parseInt(document.getElementById("sync-bits").value);
+  const syncUnit = document.querySelector('input[name="sync-unit"]:checked').value;
 
-    const channels = parseInt(document.getElementById("channels").value);
-    const bps = parseInt(document.getElementById("bps").value);
-    const syncBits = parseInt(document.getElementById("syncBits").value);
+  // Conversión de unidades
+  const dataInBits = channelUnit === "bytes" ? channelData * 8 : channelData;
+  const rateInBps =
+      transmissionUnit === "kbps" ? transmissionRate * 1000 :
+      transmissionUnit === "mbps" ? transmissionRate * 1000000 :
+      transmissionRate;
+  const syncInBits = syncUnit === "bytes" ? syncBits * 8 : syncBits;
 
-    if (isNaN(channels) || isNaN(bps) || isNaN(syncBits) || channels <= 0 || bps <= 0 || syncBits < 0) {
-        alert("Por favor, ingresa valores válidos en todos los campos.");
-        return;
-    }
+  // Cálculos
+  const frameBits = (dataInBits * channels) + syncInBits;
+  const totalRateKbps = (frameBits * rateInBps / dataInBits) / 1000; // Convertir a kbps
+  const frameDurationMs = (dataInBits / rateInBps) * 1000; // Convertir a ms
 
-    const bitsPerFrame = channels + syncBits; 
-    const linkRate = bitsPerFrame * bps; 
-    const frameDuration = (bitsPerFrame / linkRate) * 1000; 
+  // Actualización de resultados
+  document.getElementById("frame-bits").textContent = `Bits totales de la trama de salida: ${frameBits}`;
+  document.getElementById("transmission-rate-result").textContent = `Tasa de transmisión del enlace: ${totalRateKbps.toFixed(2)} kbps`;
+  document.getElementById("frame-duration").textContent = `Duración de cada trama de entrada: ${frameDurationMs.toFixed(2)} ms`;
 
-    document.getElementById("bitCount").textContent = `Cantidad de bits por trama: ${bitsPerFrame} bits`;
-    document.getElementById("linkRate").textContent = `Tasa de transmisión del enlace: ${linkRate} bps`;
-    document.getElementById("frameDuration").textContent = `Duración de cada trama de entrada: ${frameDuration.toFixed(3)} ms`;
-
-    document.getElementById("results").style.display = "flex";
+  document.getElementById("results").style.display = "flex";
 });
 
 const infoLink = document.getElementById('infoLink');

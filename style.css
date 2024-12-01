@@ -2,23 +2,29 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    height: 100vh;
+    height: 50px;  /* 100% para ocupar toda la página */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;  /* Alinea desde la parte superior */
     background-image: url('imagenes/fondo.jpg'); 
     background-size: cover;
     background-position: center;
+    overflow-x: hidden;  /* Evita desbordamiento horizontal */
+   /* transform: scale(0.90); /* Esto reduce todo al 80% de su tamaño original */
+    /*transform-origin:center; /* Hace que la escala se aplique desde la esquina superior izquierda */
+   
 }
+
 .header {
     position: absolute;
-    top: 10px; 
-    left: 10px; 
-    font-size: 24px; 
+    top: 5px; 
+    left: 5px; 
+    font-size: 12px;  /* Reducido */
     color: #f0f6f8; 
 }
+
 .logo {
-    width: 80px;
+    width: 50px;  /* Ajustado */
     height: auto; 
 }
 
@@ -26,17 +32,22 @@ body {
     display: flex;
     flex-direction: column; 
     align-items: center;
-    justify-content: center; 
+    justify-content: center; /* Para que se quede al principio */
     background-color: rgba(255, 255, 255, 0.9); 
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 700px; 
+    padding: 10px; /* Ajustado */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    width: 400px;  /* Ajusta el tamaño relativo */
+    max-width: 500px;  /* Máximo ancho */
+    height: auto;
+    margin-top: 10px;  /* Para darle un poco de espacio desde la parte superior */
+    margin-bottom: 10px;  /* Deja espacio al final */
+
 }
 
 h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 1.4rem;  /* Reducido */
+    margin-bottom: 10px;  /* Reducido */
     font-weight: bold;
     text-align: center;
     background: -webkit-linear-gradient(#6dd5ed, #3498db, #2ecc71); 
@@ -48,14 +59,8 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-right: 20px;
-    width: 100%;
-}
-
-.input-container {
-    margin-bottom: 15px;
-    width: 100%;
-    text-align: center; 
+    
+    width: 70%;
 }
 
 label {
@@ -63,34 +68,39 @@ label {
     color: #34495E;
     font-weight: bold;
     margin-bottom: 5px;
+    font-size: 13.5px; /* Reducido */
+    text-align: center;
 }
 
 input {
-    width: 80%;
-    padding: 10px;
+    width: 10%;
+    padding: 5px;  /* Reducido */
     border-radius: 6px;
     border: 1px solid #BDC3C7;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 14px;  /* Reducido */
+    margin-bottom: 8px;  /* Reducido */
     box-sizing: border-box;
     background-color: #f4f6f7; 
+    text-align: left;
 }
 
 button {
     width: 80%;
-    padding: 12px;
+    padding: 10px;  /* Reducido */
     background-color: #3498db; 
     color: white;
     border: none;
     border-radius: 6px;
-    font-size: 18px;
+    font-size: 15px;  /* Reducido */
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 button:hover {
     background-color: #2980b9; 
+    
 }
+
 
 .results {
     display: none; 
@@ -99,31 +109,30 @@ button:hover {
     background-color: #2ecc71; 
     color: white;
     border-radius: 12px;
-    padding: 20px;
-    width: 100%;
+    padding: 15px;  /* Reducido */
+    width: 80%;  /* Ajustado */
     box-sizing: border-box;
-    margin-top: 30px; 
+    margin-top: 20px;  /* Reducido */
+    max-height: 300px; /* Máxima altura para los resultados */
+    overflow-y: auto;  /* Permite el desplazamiento de los resultados */
 }
 
 #results h2 {
-    font-size: 24px;
+    font-size: 1.6rem;  /* Reducido */
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 10px;  /* Reducido */
     text-align: center; 
 }
 
 #results p {
-    font-size: 18px;
+    font-size: 14px;  /* Reducido */
     margin: 8px 0;
     font-weight: 500;
     text-align: center; 
+}
 
-#results p:last-child {
-    margin-bottom: 0;
-}
-}
 footer {
-    position: absolute;
+    position:fixed;
     bottom: 10px;
     right: 10px;
     color: #ffffff;
@@ -137,6 +146,7 @@ footer p {
     margin: 0;
     padding: 0; 
 }
+
 .info-icon {
     position: fixed;
     bottom: 20px;
@@ -161,4 +171,78 @@ footer p {
 .info-icon:hover {
     background-color: #f0f0f0;
     color: #333;
+}
+
+/* Mantener el diseño actual */
+.input-container {
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.input-container label{
+    margin-right: 20px; 
+}
+
+.input-container input[type="number"] {
+    display: inline-block; /* Permite aplicar margin auto */
+    margin: 0 auto; /* Centra el input */
+    padding: 10px;
+    font-size: 14px;  /* Reducido */
+    width: 80%; /* Ajusta el tamaño del input */
+}
+
+/* Contenedor de los botones radio */
+.radio-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Estilo de los botones radio */
+.radio-container label {
+    margin-right: 10px;
+    font-size: 12px;  /* Reducido */
+}
+
+/* Espaciado para los radios */
+.radio-container input[type="radio"] {
+    margin-right: 5px;
+}
+
+.radio-group {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.radio-group label {
+    margin-right: 10px;
+    font-size: 16px;  /* Reducido */
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+#transmission-unit {
+    margin-top: 10px;
+    margin-left: 10px; /* Empuja el elemento hacia la derecha */
+    position: absolute;
+
+        background-color: #f0f0f0; /* Cambia el color de fondo */
+        color: #130547; /* Cambia el color del texto */
+        border: 1px solid #ccc; /* Bordes personalizados */
+        border-radius: 5px; /* Bordes redondeados */
+        padding: 1px; /* Espaciado interno */
+        font-size: 12px; /* Tamaño de fuente */
+}
+#transmission-unit:hover {
+    background-color: #e0e0e0; /* Color de fondo al pasar el mouse */
+    color: #000; /* Color del texto */
+    cursor: pointer; /* Cambia el cursor a "puntero" */
 }

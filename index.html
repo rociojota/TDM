@@ -1,58 +1,89 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora TDM Orientada al Bit</title>
+    <title>Calculadora TDM</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="header">
-        <img src="imagenes/logoutn.png" alt="UTN-FRT" class="logo">
+        <img src="imagenes/logoutn.png" alt="Logo" class="logo">
     </div>
+    <div class="calculator">
+        <h1>Calculadora TDM</h1>
 
-    <div class="background">
-        <div class="calculator">
-            <h1>Calculadora TDM Orientada al Bit</h1>
-            
-            <form id="tdmForm">
-                <div class="input-container">
-                    <label for="channels">Número de canales:</label>
-                    <input type="number" id="channels" value="4" min="1">
-                </div>
-                
-                <div class="input-container">
-                    <label for="bps">Tasa de transmisión por canal (bps):</label>
-                    <input type="number" id="bps" value="100" min="1">
-                </div>
-                
-                <div class="input-container">
-                    <label for="syncBits">Cantidad de bits de sincronismo:</label>
-                    <input type="number" id="syncBits" value="0" min="0">
-                </div>
-                
-                <button type="submit">Calcular</button>
-            </form>
+        <form id="tdm-form">
+          <!-- Número de canales -->
+          <div class="input-container">
+              <label for="channels">Número de canales:</label>
+              <input type="number" id="channels" min="1" required>
+          </div>
+      
+          <!-- Datos por canal -->
+          <div class="input-container">
+              <label for="channel-data">Datos por canal:</label>
+              <input type="number" id="channel-data" min="1" required>
+              <div class="radio-container">
+                  <label>
+                      <input type="radio" name="channel-unit" value="bits" checked>
+                      Bits
+                  </label>
+                  <label>
+                      <input type="radio" name="channel-unit" value="bytes">
+                      Bytes
+                  </label>
+              </div>
+          </div>
+      
+          <!-- Tasa de transmisión -->
+          <div class="input-container">
+              <label for="transmission-rate">Tasa de transmisión de cada canal:</label>
+              <input type="number" id="transmission-rate" min="1" required>
+              <select id="transmission-unit">
+                  <option value="bps">bps</option>
+                  <option value="kbps">kbps</option>
+                  <option value="mbps">Mbps</option>
+              </select>
+          </div>
+      
+          <!-- Bits de sincronismo -->
+          <div class="input-container">
+              <label for="sync-bits">Cantidad de bits/bytes de sincronismo:</label>
+              <input type="number" id="sync-bits" min="0" value="0">
+              <div class="radio-container">
+                  <label>
+                      <input type="radio" name="sync-unit" value="bits" checked>
+                      Bits
+                  </label>
+                  <label>
+                      <input type="radio" name="sync-unit" value="bytes">
+                      Bytes
+                  </label>
+              </div>
+          </div>
+      
+          <!-- Botón de cálculo -->
+          <button type="button" id="calculate-btn">Calcular</button>
+      </form>
+      
 
-            <div id="results" class="results">
-                <h2>Resultados</h2>
-                <p id="bitCount"></p>
-                <p id="linkRate"></p>
-                <p id="frameDuration"></p>
-            </div>
+        <!-- Resultados -->
+        <div id="results" class="results">
+          <h2>Resultados</h2>
+          <p id="frame-bits">Bits totales de la trama de salida: </p>
+          <p id="transmission-rate-result">Tasa de transmisión del enlace: </p>
+          <p id="frame-duration">Duración de cada trama de entrada: </p>
         </div>
-    </div>
+        </div>
 
-    <a href="#" id="infoLink" class="info-icon" title="Ver manual de usuario">i</a>
+        <a href="#" id="infoLink" class="info-icon" title="Ver manual de usuario">i</a>
 
-
-<footer>
-    <p>Rocío Jaluf</p>
-    <p>Comunicaciones 2024</p>
-
-</footer>
-
-    <script src="script.js"></script>
+        <footer>
+            <p>Rocío Jaluf</p>
+            <p>Comunicaciones 2024</p>
+        </footer>
+        
+        <script src="script.js"></script>
 </body>
 </html>
