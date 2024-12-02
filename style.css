@@ -42,12 +42,12 @@ body {
 }
 
 #multiplexorCanvas {
-    margin-top: 90px;   
+    margin-top: 40px;   
     width: 30%;       
     height: auto;  
     border: 1px solid #9797d3;  
     margin-left: 20px;
-    max-height: 400px;      
+    max-height: 530px;      
     background-color: rgba(255, 255, 255, 0.9); 
 
 }

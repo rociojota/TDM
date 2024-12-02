@@ -14,13 +14,18 @@ document.getElementById("calculate-btn").addEventListener("click", function () {
       transmissionRate;
   const syncInBits = syncUnit === "bytes" ? syncBits * 8 : syncBits;
 
-  const frameBits = (dataInBits * channels) + syncInBits;
+  const bitsUtiles = dataInBits * channels; // Bits útiles
+  const frameBits = bitsUtiles + syncInBits; // Bits totales (trama completa)
   const totalRateKbps = (frameBits * rateInBps / dataInBits) / 1000; // Convertir a kbps
   const frameDurationMs = (dataInBits / rateInBps) * 1000; // Convertir a ms
 
-  document.getElementById("frame-bits").textContent = `Bits totales de la trama de salida: ${frameBits}`;
-  document.getElementById("transmission-rate-result").textContent = `Tasa de transmisión del enlace: ${totalRateKbps.toFixed(2)} kbps`;
-  document.getElementById("frame-duration").textContent = `Duración de cada trama de entrada: ${frameDurationMs.toFixed(2)} ms`;
+  // Calcular eficiencia
+  const eficiencia = (bitsUtiles / frameBits) * 100;
+
+  document.getElementById("frame-bits").textContent = `Tamaño de la trama de salida: ${frameBits}`;
+  document.getElementById("transmission-rate-result").textContent = `Tasa de bits de salida: ${totalRateKbps.toFixed(2)} kbps`;
+  document.getElementById("frame-duration").textContent = `Duración de la trama: ${frameDurationMs.toFixed(2)} ms`;
+  document.getElementById("efficiency").textContent = `Eficiencia del sistema: ${eficiencia.toFixed(2)}%`;
 
   document.getElementById("results").style.display = "flex";
 
@@ -37,27 +42,32 @@ function drawMultiplexor(channelCount, dataInBits, syncInBits) {
   const canvas = document.getElementById("multiplexorCanvas");
   const ctx = canvas.getContext("2d");
 
+  const channelHeight = 30; 
+  const spacing = 10;
+  const margin = 50;
+  const totalHeight = channelCount * (channelHeight + spacing) + margin * 2;
+
+  canvas.height = totalHeight;
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  const channelHeight = 30;
-  const channelWidth = 100;
-  let startY = 50;
-
+  let startY = margin; 
   for (let i = 0; i < channelCount; i++) {
-    const color = `hsl(${(i * 50) % 360}, 70%, 70%)`; 
-    ctx.fillStyle = color;
-    ctx.fillRect(50, startY, channelWidth, channelHeight);
+      const color = `hsl(${(i * 50) % 360}, 70%, 70%)`;
+      ctx.fillStyle = color;
+      ctx.fillRect(50, startY, 100, channelHeight);
 
-    ctx.fillStyle = "#000";
-    ctx.fillText(`Canal ${i + 1}`, 160, startY + 20);
+      ctx.fillStyle = "#000";
+      ctx.font = "12px Arial";
+      ctx.fillText(`Canal ${i + 1}`, 160, startY + channelHeight / 2 + 5);
 
-    startY += channelHeight + 10;
+      startY += channelHeight + spacing; 
   }
 
   const muxX = 200;
-  const muxY = 50;
+  const muxY = margin;
   const muxWidth = 70;
-  const muxHeight = channelCount * (channelHeight + 10);
+  const muxHeight = channelCount * (channelHeight + spacing);
 
   ctx.fillStyle = "#3498db";
   ctx.beginPath();
@@ -67,16 +77,16 @@ function drawMultiplexor(channelCount, dataInBits, syncInBits) {
   ctx.closePath();
   ctx.fill();
 
-  // Dibujar la salida (trama resultante)
-  const outputWidth = 100;    // Ancho de la salida
-  const outputHeight = 20;    // Alto de la salida
-  const outputX = muxX + muxWidth + 10;  // Posición X de la salida
-  const outputY = muxY + muxHeight / 2 - 10; // Posición Y de la salida
+  const outputWidth = 100;
+  const outputHeight = 20;
+  const outputX = muxX + muxWidth + 10;
+  const outputY = muxY + muxHeight / 2 - 10;
 
-  ctx.fillStyle = "#FF6347";  
+  ctx.fillStyle = "#FF6347";
   ctx.fillRect(outputX, outputY, outputWidth, outputHeight);
 
   ctx.fillStyle = "#000";
-  ctx.font = '12px Arial';
-  ctx.fillText("Salida", outputX + 40, outputY + 12);
+  ctx.font = "12px Arial";
+  ctx.fillText("Salida", outputX + 30, outputY + 15);
 }
+
